@@ -1,57 +1,30 @@
-project04
-==============================
+# Categorizing News Headlines with Deep Learning
+Separating parody and clickbait from real news using a Convolutional Neural Network
 
-Final project for module four.
+# Motivation
 
-Project Organization
-------------
+When you have a service that is built around curating online content, it’s mission critical to make sure that you’re delivering your customers high quality content that is portrayed accurately.
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
+Unfortunately, it can be hard to know what’s real. With such low barriers to online publishing, anything can end up online, and even professional journalists and politicians can be fooled. With many thousands of articles coming out every day, it’s a huge job to sort them out for your customers, and errors can have serious consequences.
+
+In approaching this problem, I've found it useful to think of news articles not just as real versus fake, but as real, parody, or clickbait. This is because these are all written in distinct styles. Parody news is meant to mimic the style of real news, but generally aims to entertain rather than deceive. Meanwhile, clickbait can be filled with complete nonsense, and will meld itself into whatever format is most attention-grabbing.
+
+# Results
+
+Training a Convolutional Neural Network on a database of 35,000 labelled headlines resulted in a classification accuracy of ~80%, a result that would have been state-of-the-art even a few years ago.
+
+In addition to the modelling that is core to this project, I prepared a chart suggesting a plan for productization and implementation of the neural network.
+
+# Notebooks of Interest
+
+[Complete Project Notebook](notebooks/ModFourProject.ipynb)
+
+# Figures of Interest
+
+![](reports/figures/product_chart.png)
 
 
---------
+## Usage
+On a daily basis, the neural network will be able to sort headlines into real news, parody news, clickbait, and news it’s not quite sure about.
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Real news and parody news can go into the pipeline for publishing, appropriately labeled as what they are so that nobody thinks fish have taken over the government. Clickbait gets discarded, just as it should be. Finally, the uncertain headlines can be categorized by crowdsourcing to the public, just like companies like Google, Facebook, and OkCupid routinely do. After validation to make sure that the model improves, these get fed back to the neural network, making it even more accurate every single day.
